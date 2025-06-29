@@ -13,6 +13,8 @@ func SetupRoutes(router *gin.Engine) {
 	})
 
 	router.POST("/chat", HandleChatOPENROUTER)
-	// router.POST("/chat", handler.ChatHandler)
 
+	router.HEAD("/", func(c *gin.Context) { // for pings and stuff
+		c.Status(http.StatusOK)
+	})
 }
