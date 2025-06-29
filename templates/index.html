@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Assistant Chatbot</title>
+    <style>        
+        body { 
+            font-family: sans-serif; 
+            max-width: 1000px; 
+            margin: auto; /* Center the whole thing on the page */
+            padding: 20px; 
+            background-color: #f0f0f0; 
+        }
+        
+        /* chat display area */
+        #chat-container { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            height: 70vh; /* taking the view height on a percentage */
+            overflow-y: scroll; 
+            margin-bottom: 10px; 
+            background-color: #fff;
+            border-radius: 8px; 
+        }
+        
+        /* each message bubble */
+        .message { 
+            margin-bottom: 15px; 
+            padding: 10px;
+            border-radius: 15px;
+            word-wrap: break-word; 
+        }
+        
+        /* user's message bubble */
+        .user { 
+            text-align: right; 
+            background-color: #d1e7ff; 
+            margin-left: 20%; 
+        }
+        
+        /* chatbot's message bubble */
+        .bot { 
+            text-align: left; 
+            background-color: #e2f0d9;
+            margin-right: 20%; 
+        }
+        
+        #input-form { 
+            display: flex; /* Arranges items in a row */
+            gap: 10px; 
+            align-items: center; 
+            margin-top: 20px;
+        }
+        
+        /* text input box */
+        #user-input { 
+            flex-grow: 1; /* Makes it take up all available space */
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 20px; 
+            font-size: 16px;
+        }
+        
+        #send-btn { 
+            padding: 12px 25px; 
+            border: none; 
+            background-color: #007bff; 
+            color: white; 
+            border-radius: 20px; 
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learning Assistant Chatbot</h1>
+    
+    <div id="chat-container">
+        </div>
+    
+    <form id="input-form">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        
+        <input type="file" id="image-upload" accept="image/*" style="display: none;">
+        
+        <label for="image-upload" style="cursor: pointer; padding: 12px 15px; border: 1px solid #ccc; border-radius: 20px; background: #fff;">
+            🖼️ Upload Image
+        </label>
+        
+        <button type="submit" id="send-btn">Send</button>
+    </form>
+    
+    <div id="image-preview" style="margin-top: 10px; max-height: 200px; overflow: hidden; display: none;">
+        <img id="preview-image" src="#" alt="Image preview" style="max-width: 100%; max-height: 100%;">
+    </div>
+    
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Chatbot Front End
+        </title>
+        <style>
+            /* Styles for the chat display area */
+        #chat-container { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            height: 50vh;
+            overflow-y: scroll;
+            margin-bottom: 10px; 
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        #input-form { 
+            display: flex;
+            gap: 10px; 
+            align-items: center; 
+            margin-top: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Chatbot Front End
+        </h1>
+         <div id="chat-container">
+        </div>
+         <h3>
+            Interaction menus
+        </h3>
+        <form id="input-form">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+            
+            <label for="image-upload" style="padding: 1%; border: 1px solid #ccc;">
+                Upload Image
+            </label> 
+            
+            <button type="submit" id="send-btn">Send</button>
+        </form>
+        
+        <div id="image-preview" style="margin-top: 10px; max-height: 200px; overflow: hidden; display: none;">
+            <img id="preview-image" src="#" alt="Image preview" style="max-width: 100%; max-height: 100%;">
+        </div>
+    </body>
+    <script src="/static/js/main.js"></script>
+
+</html> -->
