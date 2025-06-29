@@ -2,11 +2,13 @@
 <html>
 <head>
     <title>Learning Assistant Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>        
         body { 
             font-family: sans-serif; 
             max-width: 1000px; 
             margin: auto; /* Center the whole thing on the page */
+            height: 90vh; /* taking the view height on a percentage */
             padding: 20px; 
             background-color: #f0f0f0; 
         }
@@ -14,8 +16,8 @@
         /* chat display area */
         #chat-container { 
             border: 1px solid #ccc; 
+            height: 60vh; /* taking the view height on a percentage */
             padding: 15px; 
-            height: 70vh; /* taking the view height on a percentage */
             overflow-y: scroll; 
             margin-bottom: 10px; 
             background-color: #fff;
@@ -72,13 +74,54 @@
         #send-btn:hover {
             background-color: #0056b3;
         }
+         
+        /* Responsive CSS for mobile views  */
+        @media screen and (max-width: 768px) {
+            body {
+                max-width: 100%;
+                padding: 10px;
+                font-size: 1.1rem;
+
+            }
+            #chat-container {
+                height: 75vh; 
+            }
+            .user {
+                margin-left: 5%; 
+            }
+            .bot {
+                margin-right: 5%; 
+            }
+            #input-form {
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 8px; 
+            }
+            #user-input {
+                width: 100%; 
+                font-size: 1rem; 
+                padding: 10px;
+            }
+            #image-upload + label, #send-btn {
+                width: 100%; 
+                text-align: center;
+                padding: 12px;
+            }
+        }
+       
     </style>
 </head>
 <body>
     <h1>Learning Assistant Chatbot</h1>
     
     <div id="chat-container">
+        
         </div>
+    <div>
+    <h6>
+    <i>Include keywords like "videos", "materials", or "references" on the prompt to get related materials on the topic! </i>
+    </h6>
+    </div>
     
     <form id="input-form">
         <input type="text" id="user-input" placeholder="Type your message...">
@@ -96,61 +139,7 @@
         <img id="preview-image" src="#" alt="Image preview" style="max-width: 100%; max-height: 100%;">
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="/static/js/main.js"></script>
 </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Chatbot Front End
-        </title>
-        <style>
-            /* Styles for the chat display area */
-        #chat-container { 
-            border: 1px solid #ccc; 
-            padding: 15px; 
-            height: 50vh;
-            overflow-y: scroll;
-            margin-bottom: 10px; 
-            background-color: #fff;
-            border-radius: 8px;
-        }
-        #input-form { 
-            display: flex;
-            gap: 10px; 
-            align-items: center; 
-            margin-top: 20px;
-        }
-        </style>
-    </head>
-    <body>
-        <h1>
-            Chatbot Front End
-        </h1>
-         <div id="chat-container">
-        </div>
-         <h3>
-            Interaction menus
-        </h3>
-        <form id="input-form">
-            <input type="text" id="user-input" placeholder="Type your message...">
-            
-            <input type="file" id="image-upload" accept="image/*" style="display: none;">
-            
-            <label for="image-upload" style="padding: 1%; border: 1px solid #ccc;">
-                Upload Image
-            </label> 
-            
-            <button type="submit" id="send-btn">Send</button>
-        </form>
-        
-        <div id="image-preview" style="margin-top: 10px; max-height: 200px; overflow: hidden; display: none;">
-            <img id="preview-image" src="#" alt="Image preview" style="max-width: 100%; max-height: 100%;">
-        </div>
-    </body>
-    <script src="/static/js/main.js"></script>
-
-</html> -->

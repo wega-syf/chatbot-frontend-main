@@ -41,7 +41,7 @@ var learningMaterials = map[string][]struct {
 }
 
 // A global slice of keywords to check for learning materials requests.
-var learningKeywords = []string{"materi", "materials", "video", "article", "artikel", "videos", "tambahan materi", "materi externl"}
+var learningKeywords = []string{"materi", "materials", "video", "article", "artikel", "videos", "tambahan materi", "material", "references", "reference", "materi external"}
 
 // Structs to match the OpenRouter API payload
 type OpenRouterImageURL struct {
@@ -74,7 +74,7 @@ func handleLearningMaterialsRequest(c *gin.Context, message string) bool {
 		if strings.Contains(lowerMessage, keyword) {
 			// If we find a keyword, send the custom JSON response
 			c.JSON(http.StatusOK, gin.H{
-				"bot_response": "Of course! Here are some learning materials I found for you:",
+				"bot_response": "Here are also some extra learning materials I found for you:",
 				"articles":     learningMaterials["articles"],
 				"videos":       learningMaterials["videos"],
 			})
@@ -150,7 +150,8 @@ func HandleChatOPENROUTER(c *gin.Context) {
 	fullMessages = append(fullMessages, OpenRouterMessage{
 		Role: "system",
 		Content: []OpenRouterContent{
-			{Type: "text", Text: "You are a helpful learning assistant. Please answer all questions in plain text without using any Markdown formatting, such as bold, italics, or lists. Your responses should be clean and simple."},
+			{Type: "text", Text: "You are a helpful and patient learning assistant. Your goal is to guide the user in their learning journey. If the user asks a factual question, provide a clear and concise answer. If the user asks for learning materials, you do not need to provide them. Always respond in a friendly and encouraging tone. You can use Markdown formatting like bold (*) and italics (_), but avoid complex formatting like tables or code blocks."},
+			// {Type: "text", Text: "You are a helpful learning assistant. Please answer all questions in plain text without using any Markdown formatting, such as bold, italics, or lists. Your responses should be clean and simple."},
 		},
 	})
 
@@ -163,7 +164,7 @@ func HandleChatOPENROUTER(c *gin.Context) {
 		Messages: fullMessages,
 	}
 
-	fmt.Printf("%+v\n", payload)
+	// fmt.Printf("%+v\n", payload)
 
 	// Marshal the struct into a JSON payload
 	jsonPayload, err := json.Marshal(payload)
@@ -230,4 +231,5 @@ func HandleChatOPENROUTER(c *gin.Context) {
 
 	// Send the response back to the frontend as JSON!
 	c.JSON(http.StatusOK, gin.H{"bot_response": botResponse})
+
 }

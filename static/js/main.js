@@ -1,6 +1,3 @@
-// // console.log(userInput)
-
-
 // console.log("main.js is running!");
 
 // Getting all elements from the page
@@ -20,10 +17,13 @@ const userName = "User"
 function addMessage(sender, text, imageSrc = null, materials = null) {
     const messageDiv = document.createElement('div');
     var senderType;
+    let renderedText = text;
     
     // Switch the type depending on the sender
-    if (sender == botName){
-        senderType = "bot"
+    if (sender == botName){    
+        senderType = "bot" 
+        renderedText = marked.parse(text);// Use the Markdown library to convert the bot's text to HTML
+
     } else if (sender == userName){
         senderType = "user"
     }
@@ -32,9 +32,8 @@ function addMessage(sender, text, imageSrc = null, materials = null) {
     // console.log("sendertype "+ senderType)
 
     messageDiv.className = `message ${senderType}`; // Uses CSS classes: 'user' or 'bot'
+    messageDiv.innerHTML = `<strong>${sender}:</strong> ${renderedText}`; // Adding HTML content to the message, with the name instead of the type.
 
-    // Adding HTML content to the message, with the nameo instead of the type.
-    messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
     
     // If an image was provided, add it to the message bubble
     if (imageSrc) {
@@ -65,7 +64,7 @@ function addMessage(sender, text, imageSrc = null, materials = null) {
                     const embedURL = `https://www.youtube.com/embed/${videoID}`;
                     
                     // Embed the video using an iframe.
-                    messageDiv.innerHTML += `<div style="margin-top: 10px;"><iframe width="40%" height="20%" src="${embedURL}" frameborder="0" allow="accelerometer; autoplay; picture-in-picture" allowfullscreen></iframe></div>`;
+                    messageDiv.innerHTML += `<div style="margin-top: 10px;"><iframe width="70%" height="20%" src="${embedURL}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
                 } else {
                     // If it's not a YouTube video, just show a regular link
                     messageDiv.innerHTML += `<a href="${item.url}" target="_blank">${item.title}</a><br>`;
@@ -82,7 +81,7 @@ function addMessage(sender, text, imageSrc = null, materials = null) {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
-// Add an initial message from the bot with a learning-assistant tone. shows a default bot chat
+// Add an initial message 
 addMessage(botName, 'Welcome! I am your learning assistant AI. I can help you explore a topic or dive deep into the details. Ask me questions, upload images for context, or even ask me to find videos on a topic you want to learn about!');
 
 
@@ -147,15 +146,12 @@ inputForm.addEventListener('submit', async (e) => {
 
         // Check if the response contains material recommendations
         if (data.articles || data.videos) {
-            // If it does, render the materials using the updated function
+            // If it does, render the Dummy data materials only
             addMessage(botName, data.bot_response, null, { articles: data.articles, videos: data.videos });
         } else {
             // Otherwise, just display the regular text response
             addMessage(botName, data.bot_response);
         }
-
-        // Display the bot's response
-        // addMessage(botName, data.bot_response);
 
     } catch (error) {
         console.error('Error:', error);
